@@ -28,7 +28,7 @@ export default function UpdateProfile() {
         setName(user.name || "");
         setBio(user.bio || "");
         if (user.profilePic) {
-          setProfilePicPreview(`http://localhost:5000/${user.profilePic}`);
+          setProfilePicPreview(`${API_BASE}/${user.profilePic}`);
         }
       } else {
         setError("Failed to fetch user profile");
@@ -94,7 +94,7 @@ export default function UpdateProfile() {
         }
 
         const data = await response.json();
-        setProfilePicPreview(`http://localhost:5000/${data.profilePic}`);
+        setProfilePicPreview(`${API_BASE}/${data.profilePic}`);
         setProfilePicFile(null);
       }
 

@@ -1,8 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import "../App.css";
-
-const API_BASE = "http://localhost:5000/api";
+import { API_BASE } from "./API.js";
 
 export default function UpdateProfile() {
   const [name, setName] = useState("");
@@ -20,7 +19,7 @@ export default function UpdateProfile() {
 
   const fetchUserProfile = async () => {
     try {
-      const response = await fetch(`${API_BASE}/auth/me`, {
+      const response = await fetch(`${API_BASE}/api/auth/me`, {
         credentials: "include",
       });
       if (response.ok) {
@@ -61,7 +60,7 @@ export default function UpdateProfile() {
     try {
       // Update name and bio
       if (name || bio !== undefined) {
-        const response = await fetch(`${API_BASE}/user/update`, {
+        const response = await fetch(`${API_BASE}/api/user/update`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           credentials: "include",
@@ -81,7 +80,7 @@ export default function UpdateProfile() {
         const formData = new FormData();
         formData.append("profilePicture", profilePicFile);
 
-        const response = await fetch(`${API_BASE}/user/profilePic`, {
+        const response = await fetch(`${API_BASE}/api/user/profilePic`, {
           method: "PUT",
           credentials: "include",
           body: formData,

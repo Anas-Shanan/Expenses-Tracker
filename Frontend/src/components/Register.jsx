@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { API_BASE } from "./API.js";
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -22,7 +23,7 @@ export default function Register() {
       if (profilePic) {
         formData.append("profilePic", profilePic);
       }
-      const response = await fetch("http://localhost:5000/api/auth/register", {
+      const response = await fetch(`${API_BASE}/api/auth/register`, {
         method: "POST",
         credentials: "include",
         body: formData,

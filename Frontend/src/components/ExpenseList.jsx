@@ -1,8 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import "../App.css";
-
-const API_BASE = "http://localhost:5000/api";
+import { API_BASE } from "./API.js";
 
 export default function ExpenseList() {
   const [expenses, setExpenses] = useState([]);
@@ -30,7 +29,7 @@ export default function ExpenseList() {
 
   const fetchExpenses = async () => {
     try {
-      const response = await fetch(`${API_BASE}/expense`, {
+      const response = await fetch(`${API_BASE}/api/expense`, {
         credentials: "include",
       });
       if (response.ok) {
@@ -52,7 +51,7 @@ export default function ExpenseList() {
     setLoading(true);
 
     try {
-      const response = await fetch(`${API_BASE}/expense`, {
+      const response = await fetch(`${API_BASE}/api/expense`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -106,7 +105,7 @@ export default function ExpenseList() {
     setLoading(true);
 
     try {
-      const response = await fetch(`${API_BASE}/expense/${expenseId}`, {
+      const response = await fetch(`${API_BASE}/api/expense/${expenseId}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -146,7 +145,7 @@ export default function ExpenseList() {
     setLoading(true);
 
     try {
-      const response = await fetch(`${API_BASE}/expense/${expenseId}`, {
+      const response = await fetch(`${API_BASE}/api/expense/${expenseId}`, {
         method: "DELETE",
         credentials: "include",
       });
@@ -272,10 +271,18 @@ export default function ExpenseList() {
               />
             </div>
             <div className="form-actions">
-              <button type="submit" disabled={loading} className="btn btn-success">
+              <button
+                type="submit"
+                disabled={loading}
+                className="btn btn-success"
+              >
                 {loading ? "Adding..." : "Add Expense"}
               </button>
-              <button type="button" onClick={cancelAdd} className="btn btn-secondary">
+              <button
+                type="button"
+                onClick={cancelAdd}
+                className="btn btn-secondary"
+              >
                 Cancel
               </button>
             </div>

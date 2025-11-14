@@ -54,9 +54,12 @@ export async function login(req, res) {
 
     const token = user.generateToken();
     const cookieExpireHours = Number(process.env.COOKIE_EXPIRE || 24);
+    const isProduction = process.env.NODE_ENV === "production";
     const options = {
       expires: new Date(Date.now() + cookieExpireHours * 60 * 60 * 1000),
       httpOnly: true,
+      secure: isProduction, // Only send over HTTPS in production
+      sameSite: isProduction ? "none" : "lax", // Allow cross-origin cookies in production
     };
     user.password = undefined; // just more secure
     res
@@ -73,9 +76,12 @@ export async function login(req, res) {
 }
 
 export async function logout(req, res) {
+  const isProduction = process.env.NODE_ENV === "production";
   res.cookie("token", "none", {
     expires: new Date(Date.now() + 10 * 1000),
     httpOnly: true,
+    secure: isProduction,
+    sameSite: isProduction ? "none" : "lax",
   });
   res.status(200).json({
     msg: "User logged out successfully",

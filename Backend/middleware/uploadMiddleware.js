@@ -1,9 +1,20 @@
 import multer from "multer";
 import crypto from "crypto";
+import fs from "fs";
+import path from "path";
+
+const UPLOADS_DIR = path.join(process.cwd(), "uploads");
+
+// ensure uploads dir exists
+try {
+  fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+} catch (err) {
+  // ignore if exists or creation failed; multer will surface errors
+}
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "./uploads/");
+    cb(null, UPLOADS_DIR);
   },
 
   filename: function (req, file, cb) {

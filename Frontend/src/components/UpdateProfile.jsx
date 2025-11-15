@@ -12,7 +12,6 @@ export default function UpdateProfile() {
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // Fetch user profile
   useEffect(() => {
     fetchUserProfile();
   }, []);
@@ -36,6 +35,33 @@ export default function UpdateProfile() {
     } catch (err) {
       console.error(err);
       setError("Network error. Please try again.");
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      const res = await fetch(`${API_BASE}/api/auth/logout`, {
+        method: "POST",
+        credentials: "include",
+      });
+
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        console.error("Logout failed:", body);
+        alert(body.msg || "Logout failed");
+        return;
+      }
+
+      // this to clear local UI
+      setName("");
+      setBio("");
+      setProfilePicFile(null);
+      setProfilePicPreview("");
+
+      window.location.href = "/";
+    } catch (err) {
+      console.error("Network error during logout:", err);
+      alert("Network error — try again");
     }
   };
 
@@ -111,6 +137,10 @@ export default function UpdateProfile() {
   return (
     <div className="container">
       <h1>Update Profile</h1>
+
+      <button onClick={handleLogout} className="btn btn-secondary">
+        Logout
+      </button>
 
       {/* Profile Update Form */}
       <div className="form-section">

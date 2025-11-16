@@ -28,7 +28,25 @@ export async function register(req, res) {
       bio,
       profilePic,
     });
-    res.status(201).json(newUser);
+    // problem was userinfo not showing up after registeration- generate token and set cookie so the user is logged in after register
+    const token = newUser.generateToken();
+    const cookieExpireHours = Number(process.env.COOKIE_EXPIRE || 24);
+    const isProduction = process.env.NODE_ENV === "production";
+    const options = {
+      expires: new Date(Date.now() + cookieExpireHours * 60 * 60 * 1000),
+      httpOnly: true,
+      secure: isProduction,
+      sameSite: isProduction ? "none" : "lax",
+    };
+
+    newUser.password = undefined;
+    res
+      .status(201)
+      .cookie("token", token, options)
+      .json({
+        msg: "user registered",
+        user: { id: newUser._id, name: newUser.name, email: newUser.email },
+      });
   } catch (error) {
     console.log(error);
     res.status(500).json({ msg: "Server error!" });

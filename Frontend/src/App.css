@@ -1,204 +1,255 @@
-/* Container */
+:root {
+  --bg: #f5f7fb;
+  --card: #e7f6fa;
+  --muted: #6b7280;
+  --primary: #2563eb;
+  --success: #16a34a;
+  --danger: #dc2626;
+  --glass: rgba(255, 255, 255, 0.6);
+  --radius: 10px;
+  --max-w: 1100px;
+}
+
+/* Global */
+* {
+  box-sizing: border-box;
+}
+html,
+body,
+#root {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial;
+  background: linear-gradient(180deg, #f7fbff 0%, var(--bg) 100%);
+  color: #0c1321;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 .container {
+  width: 100%;
+  max-width: var(--max-w);
+  margin: 28px auto;
   padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+}
+
+/* Cards and sections */
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+  padding: 16px;
+}
+
+.form-section {
+  background: var(--card);
+  border-radius: 8px;
+  padding: 18px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(2, 6, 23, 0.04);
+}
+
+/* Typography */
+h1 {
+  font-size: 1.6rem;
+  margin: 0 0 12px 0;
+}
+h2 {
+  font-size: 1.125rem;
+  margin: 0 0 10px 0;
+  color: var(--muted);
+}
+p {
+  margin: 0 0 12px 0;
 }
 
 /* Forms */
-.form-section {
-  margin-bottom: 40px;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-}
-
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
-
 .form-label {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #0b1220;
 }
-
-.form-input {
+.form-input,
+.form-textarea,
+.form-select,
+.edit-form-input {
   width: 100%;
-  padding: 8px;
-  font-size: 16px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  padding: 10px;
+  border: 1px solid #e6e9ef;
+  border-radius: 8px;
+  background: #fff;
 }
-
-.form-textarea {
-  width: 100%;
-  padding: 8px;
-  font-size: 16px;
-  min-height: 80px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  resize: vertical;
-}
-
-.form-select {
-  width: 100%;
-  padding: 8px;
-  font-size: 16px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+.form-textarea,
+.edit-form-textarea {
+  min-height: 90px;
 }
 
 /* Buttons */
 .btn {
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  padding: 8px 14px;
+  border: 0;
+  font-weight: 600;
   cursor: pointer;
-  transition: opacity 0.2s;
 }
-
-.btn:disabled {
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-
 .btn-primary {
-  background-color: #007bff;
+  background: var(--primary);
   color: white;
 }
-
-.btn-success {
-  background-color: #28a745;
-  color: white;
-}
-
-.btn-danger {
-  background-color: #dc3545;
-  color: white;
-}
-
 .btn-secondary {
-  background-color: #6c757d;
+  background: #f1f5f9;
+  color: #0b1220;
+}
+.btn-success {
+  background: var(--success);
   color: white;
 }
-
-.btn-small {
-  padding: 6px 12px;
-  font-size: 14px;
+.btn-danger {
+  background: var(--danger);
+  color: white;
+}
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
-/* Profile Picture */
+/* Profile picture */
 .profile-pic-preview {
-  width: 100px;
-  height: 100px;
+  width: 96px;
+  height: 96px;
   object-fit: cover;
   border-radius: 50%;
-  margin-bottom: 10px;
+  border: 2px solid #eef2ff;
   display: block;
+  margin-bottom: 8px;
 }
 
-/* Expense List */
+/* Expense list */
 .expense-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
-
 .expense-card {
-  padding: 15px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: white;
-  margin-bottom: 15px;
+  display: block;
+  padding: 14px;
+  border-radius: 12px;
+  background: var(--card);
+  margin-bottom: 12px;
+  border: 1px solid rgba(2, 6, 23, 0.04);
 }
-
 .expense-card.editing {
-  background-color: #f9f9f9;
+  outline: 2px solid rgba(37, 99, 235, 0.08);
 }
-
 .expense-item {
   display: flex;
   justify-content: space-between;
-  align-items: start;
-  margin-bottom: 10px;
+  align-items: flex-start;
 }
-
 .expense-amount {
-  margin: 0 0 5px 0;
-  color: #007bff;
+  font-size: 1.125rem;
+  color: var(--primary);
+  margin: 0 0 6px 0;
+  font-weight: 700;
 }
-
 .expense-detail {
-  margin: 5px 0;
-  color: #666;
+  color: var(--muted);
+  margin: 4px 0;
 }
-
 .expense-actions {
   display: flex;
-  gap: 10px;
+  flex-direction: column;
+  gap: 8px;
 }
 
-/* Add Expense Form */
 .add-form {
-  margin-bottom: 30px;
-  padding: 20px;
-  border: 2px solid #28a745;
-  border-radius: 8px;
-  background-color: #f9f9f9;
+  margin-bottom: 18px;
+  padding: 14px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #fbfff9, #fff);
+  border: 1px solid rgba(22, 163, 74, 0.08);
 }
-
 .form-actions {
   display: flex;
-  gap: 10px;
+  gap: 8px;
 }
 
 /* Messages */
 .message {
-  margin-top: 20px;
+  margin-top: 14px;
   padding: 10px;
-  border-radius: 4px;
+  border-radius: 8px;
 }
-
 .message-error {
-  background-color: #f8d7da;
-  color: #721c24;
+  background: #fff1f2;
+  color: #7f1d1d;
 }
-
 .message-success {
-  background-color: #d4edda;
-  color: #155724;
+  background: #ecfdf5;
+  color: #065f46;
 }
 
-/* Empty State */
 .empty-state {
   text-align: center;
-  color: #666;
-  font-size: 18px;
+  color: var(--muted);
+  font-size: 16px;
+  padding: 22px;
 }
 
-/* Edit Form */
-.edit-form-group {
-  margin-bottom: 10px;
+/* Utilities */
+.d-flex {
+  display: flex;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.align-center {
+  align-items: center;
+}
+.mt-3 {
+  margin-top: 12px;
+}
+.mb-3 {
+  margin-bottom: 12px;
+}
+.text-muted {
+  color: var(--muted);
 }
 
-.edit-form-input {
-  width: 100%;
-  padding: 5px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+/* Small responsive tweaks */
+@media (max-width: 860px) {
+  .expense-item {
+    flex-direction: column;
+  }
+  .expense-actions {
+    flex-direction: row;
+  }
 }
 
-.edit-form-textarea {
-  width: 100%;
-  padding: 5px;
-  min-height: 60px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  resize: vertical;
+/* Light form helpers for links/buttons styled as links */
+.link-button {
+  background: transparent;
+  border: none;
+  color: var(--primary);
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  font-weight: 600;
+}
+
+/* Keep previous small classes available */
+.btn-small {
+  padding: 6px 10px;
+  border-radius: 8px;
 }

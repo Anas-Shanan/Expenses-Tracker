@@ -135,7 +135,7 @@ export default function UpdateProfile() {
   };
 
   return (
-    <div className="container">
+    <div>
       <h1>Update Profile</h1>
 
       <button onClick={handleLogout} className="btn btn-secondary">

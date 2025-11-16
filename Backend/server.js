@@ -16,8 +16,8 @@ const app = express();
 // Trust proxy for Render/Heroku (needed for secure cookies behind proxy)
 app.set("trust proxy", 1);
 
-const frontendUrl = process.env.FRONTEND_URL || "http://localhost:5173";
-/* const frontendUrl = "http://localhost:5173"; */
+/* const frontendUrl = process.env.FRONTEND_URL || "http://localhost:5173"; */
+const frontendUrl = "http://localhost:5173";
 
 app.use(
   cors({

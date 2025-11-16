@@ -40,52 +40,96 @@ export default function Register() {
     }
   };
   return (
-    <div>
-      <h1>Register</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Name"
-          name="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          name="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          name="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Bio"
-          name="bio"
-          value={bio}
-          onChange={(e) => setBio(e.target.value)}
-        />
-        <input
-          type="file"
-          accept="image/*"
-          name="profilePic"
-          onChange={(e) => setProfilePic(e.target.files[0] || null)}
-        />
-        <button type="submit">Register</button>
-      </form>
-      {error && <p>{error}</p>}
-      <p>
-        Already have an account? <Link to="/login">Login</Link>
-      </p>
+    <div className="container">
+      <div className="card" style={{ maxWidth: 520, margin: "0 auto" }}>
+        <div className="form-section">
+          <h1>Register</h1>
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label className="form-label">Name</label>
+              <input
+                type="text"
+                placeholder="Your name"
+                name="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="form-input"
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label className="form-label">Email</label>
+              <input
+                type="email"
+                placeholder="you@example.com"
+                name="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="form-input"
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label className="form-label">Password</label>
+              <input
+                type="password"
+                placeholder="Choose a password"
+                name="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="form-input"
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label className="form-label">Bio</label>
+              <input
+                type="text"
+                placeholder="Short bio (optional)"
+                name="bio"
+                value={bio}
+                onChange={(e) => setBio(e.target.value)}
+                className="form-input"
+              />
+            </div>
+
+            <div className="form-group">
+              <label className="form-label">Profile Picture (optional)</label>
+              <input
+                type="file"
+                accept="image/*"
+                name="profilePic"
+                onChange={(e) => setProfilePic(e.target.files[0] || null)}
+              />
+            </div>
+
+            <div className="form-actions">
+              <button type="submit" className="btn btn-primary">
+                Register
+              </button>
+              <button
+                type="button"
+                className="btn btn-secondary"
+                onClick={() => navigate("/")}
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+
+          {error && <div className="message message-error mt-3">{error}</div>}
+
+          <p className="mt-3">
+            Already have an account?{" "}
+            <Link to="/login" className="link-button">
+              Login
+            </Link>
+          </p>
+        </div>
+      </div>
     </div>
   );
 }

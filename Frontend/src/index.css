@@ -1,0 +1,200 @@
+/* Dark Theme CSS for Expenses Tracker */
+
+:root {
+  --primary-bg: #0a0a0a;
+  --secondary-bg: #111111;
+  --card-bg: #1a1a1a;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --accent: #10b981;
+  --accent-light: #d1fae5;
+  --border-color: #2a2a2a;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --container-max-width: 1200px;
+  --border-radius: 8px;
+  --button-radius: 4px;
+  --padding-scale: 8px;
+  --gap: 16px;
+  --transition: 0.3s ease;
+}
+
+/* Global Styles */
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background-color: var(--primary-bg);
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: bold;
+  margin: 0 0 var(--gap) 0;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+h2 {
+  font-size: 2rem;
+}
+h3 {
+  font-size: 1.5rem;
+}
+
+p {
+  margin: 0 0 var(--gap) 0;
+}
+
+/* Utility Classes */
+.container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: var(--gap);
+}
+.flex {
+  display: flex;
+  gap: var(--gap);
+}
+.grid {
+  display: grid;
+  gap: var(--gap);
+}
+
+/* Header/Navbar */
+header {
+  background-color: var(--secondary-bg);
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+}
+header h1 {
+  color: var(--text-primary);
+}
+
+/* Dashboard/Main Container */
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--gap);
+}
+
+/* Cards */
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: var(--transition);
+}
+.card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  border-color: var(--accent);
+}
+
+/* Buttons */
+button {
+  background-color: var(--accent);
+  color: var(--text-primary);
+  border: none;
+  border-radius: var(--button-radius);
+  padding: 10px 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+button:hover {
+  opacity: 0.9;
+}
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Form Inputs */
+input,
+textarea,
+select {
+  background-color: var(--primary-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 12px 16px;
+  border-radius: 6px;
+  width: 100%;
+  transition: var(--transition);
+}
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-secondary);
+}
+
+/* Lists/Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th,
+td {
+  padding: 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+tr:nth-child(even) {
+  background-color: rgba(16, 185, 129, 0.05);
+}
+tr:hover {
+  background-color: var(--card-bg);
+}
+
+/* Progress/Stats */
+.progress {
+  background-color: var(--secondary-bg);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  height: 8px;
+  width: 100%;
+}
+.progress-bar {
+  background-color: var(--accent);
+  height: 100%;
+  transition: var(--transition);
+}
+
+/* Animations */
+.fade-in {
+  animation: fadeIn var(--transition);
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  .dashboard {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
